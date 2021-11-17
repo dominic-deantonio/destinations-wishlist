@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacation Destinations WishList</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container text-center top-thing padding">
+        <h1 class="display-4">Vacation Destinations WishList</h1>
+        <p class="lead">Found exciting places to visition on your next vacation? Use the form below to add them to your wishlist</p>
+    </div>
+
+    <div class="container padding">
+        <div class="row">
+            <div class="col-md-3">
+                <label for="name">Destination name</label>
+                <input required minlength="2" type="text" class="form-control" id="dest" placeholder="Enter the name of the destination"><br/>
+                <label for="location">Location</label>
+                <input required minlength="2" type="text" class="form-control" id="loc" placeholder="Where is it located?"><br/>
+                <label for="description">Description</label>
+                <textarea type="text" class="form-control" id="desc" placeholder="A description"></textarea><br/>
+                <button onclick="addDestination();" type="button" class="btn btn-primary">Add to list</button>
+            </div>
+            <div class="col-md-8">
+                <h4 id="wishlist-label">Enter destination details</h4>
+                <div id="submissions" class="submission-style">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

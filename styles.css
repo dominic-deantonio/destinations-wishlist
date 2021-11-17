@@ -1,0 +1,19 @@
+.top-thing {
+    background-color: #f8f9fa;
+}
+
+.padding {
+    padding: 30px;
+}
+
+.submission-style {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-style {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
