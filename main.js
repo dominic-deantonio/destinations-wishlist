@@ -13,7 +13,16 @@ const container = document.getElementById("submissions");
 const label = document.getElementById("wishlist-label");
 
 async function addDestination() {
-    var card = await buildCard(destField.value, locationField.value, descriptionField.value);
+    let destination = destField.value;
+    let location = locationField.value;
+
+    if (!location || !destination) {
+        alert("Destination and location are required");
+        return;
+    }
+
+
+    var card = await buildCard(destination, location, descriptionField.value);
     container.appendChild(card);
     clearFields();
     label.innerText = "My Wishlist";
