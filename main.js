@@ -25,9 +25,13 @@ async function buildCard(destination, location, description) {
     let tempText = document.createElement("div");
     // Create temp based on loc
     if (location.length > 0) {
-        let temp = await getWeatherData(location);
-        tempText.className = "alert alert-success";
-        tempText.innerText = "Currently " + temp + "F";
+        try {
+            let temp = await getWeatherData(location);
+            tempText.className = "alert alert-success";
+            tempText.innerText = "Currently " + temp + "F";
+        } catch (error) {
+            tempText.innerText = "Weather unavailable";
+        }
     }
 
     // Create the image
