@@ -1,7 +1,7 @@
 const UNSPLASH_QUERY = 'https://api.unsplash.com/search/photos?query='
 const UNSPLASH_API_KEY = '&client_id=xqzSrlEZdhen2fjfcA-LMTkRBKL-TEzQ3JiHs7BpcMY';
 
-const WEATHER_URL = 'http://api.weatherapi.com/v1/current.json?key=3d076c351ce34eb092a205038211711&q=';
+const WEATHER_URL = 'https://api.weatherapi.com/v1/current.json?key=3d076c351ce34eb092a205038211711&q=';
 const WEATHER_KEY = '3d076c351ce34eb092a205038211711';
 
 const DEFAULT_IMAGE = "https://newsroom.aaa.com/wp-content/uploads/2021/06/Plane-taking-off-twilight-1024x684.jpg";
