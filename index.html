@@ -28,7 +28,12 @@
                 <input required minlength="2" type="text" class="form-control" id="loc" placeholder="Where is it located?"><br/>
                 <label for="description">Description</label>
                 <textarea type="text" class="form-control" id="desc" placeholder="A description"></textarea><br/>
-                <button onclick="addDestination();" type="button" class="btn btn-primary">Add to list</button>
+                <button onclick="addDestination();" type="button" class="btn btn-primary button">Add to list</button>
+                <div class="padding-top" id="error-box" hidden>
+                    <div class="alert alert-danger alert-style">
+                        <small>Destination or location required</small>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <h4 id="wishlist-label">Enter destination details</h4>

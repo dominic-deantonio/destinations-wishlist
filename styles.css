@@ -6,6 +6,10 @@
     padding: 30px;
 }
 
+.padding-top {
+    padding-top: 20px;
+}
+
 .submission-style {
     display: flex;
     flex-wrap: wrap;
@@ -16,4 +20,14 @@
     display: flex;
     justify-content: space-between;
     margin: 5px;
+}
+
+.alert-style {
+    display: flex;
+    justify-content: center;
+}
+
+.button {
+    display: block;
+    width: 100%;
 }

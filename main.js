@@ -11,17 +11,18 @@ const locationField = document.getElementById("loc");
 const descriptionField = document.getElementById("desc");
 const container = document.getElementById("submissions");
 const label = document.getElementById("wishlist-label");
+const errorBox = document.getElementById("error-box");
 
 async function addDestination() {
     let destination = destField.value;
     let location = locationField.value;
 
     if (!location || !destination) {
-        alert("Destination and location are required");
+        errorBox.hidden = false;
         return;
     }
 
-
+    errorBox.hidden = true;
     var card = await buildCard(destination, location, descriptionField.value);
     container.appendChild(card);
     clearFields();
@@ -31,26 +32,15 @@ async function addDestination() {
 async function buildCard(destination, location, description) {
     var card = document.createElement("div")
     card.className = "card card-style";
-    let tempText = document.createElement("div");
-    // Create temp based on loc
-    if (location.length > 0) {
-        try {
-            let temp = await getWeatherData(location);
-            tempText.className = "alert alert-success";
-            tempText.innerText = "Currently " + temp + "F";
-        } catch (error) {
-            tempText.innerText = "Weather unavailable";
-        }
-    }
+    let tempText = await buildTempText(location);
 
     // Create the image
     var img = await buildImage(destination);
 
     // Create the temperature data
     let tempAndImage = document.createElement("div");
-    if (location) {
-        tempAndImage.append(tempText);
-    }
+
+    tempAndImage.append(tempText);
     tempAndImage.append(img);
 
     var everythingElse = buildTitleAndButtons(destination, location, description);
@@ -141,7 +131,9 @@ async function edit(event) {
     let destination = card.children[0];
     let location = card.children[1];
     let description = card.children[2];
-    let image = card.previousElementSibling.children[card.previousElementSibling.children.length - 1]; // The image is the last element
+
+    let tempText = card.previousElementSibling.children[0];
+    let image = card.previousElementSibling.children[1];
 
     // Request new values from user
     let newDest = window.prompt("Enter new destination");
@@ -150,7 +142,11 @@ async function edit(event) {
 
     // Set all the new values    
     if (newLocation.length > 0) {
-        location.innerText = newLocation;
+        if (location.innerText != newLocation) {
+            location.innerText = newLocation;
+            let newTempText = await buildTempText(newLocation);
+            tempText.parentElement.replaceChild(newTempText, tempText);
+        }
     }
 
     if (newDescription.length > 0) {
@@ -175,4 +171,17 @@ async function getWeatherData(query) {
     let response = await fetch(url);
     let object = await response.json();
     return object.current.temp_f;
+}
+
+async function buildTempText(location) {
+    let tempText = document.createElement("div");
+    tempText.className = "alert alert-success";
+    // Create temp based on loc
+    try {
+        let temp = await getWeatherData(location);
+        tempText.innerText = "Currently " + temp + "F";
+    } catch (error) {
+        tempText.innerText = "Weather unavailable";
+    }
+    return tempText;
 }
